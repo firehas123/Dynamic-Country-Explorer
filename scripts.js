@@ -95,4 +95,28 @@ $(document).ready(function() {
             console.log("No region selected. Table cleared.");
         }
     });
+
+    // Search button click event
+    $('#searchButton').click(function() {
+        let searchInput = $('#searchInput').val().toLowerCase(); // Retrieve the search input, convert to lowercase
+
+        if (searchInput) {
+            // If a search string is provided, filter the displayed countries
+            $('#countryTable tr').each(function() {
+                // For each row in the table, check country and capital names (case insensitive)
+                let countryName = $(this).find('td:nth-child(3)').text().toLowerCase();
+                let capitalName = $(this).find('td:nth-child(4)').text().toLowerCase();
+
+                // Show/hide rows based on search input match
+                if (countryName.includes(searchInput) || capitalName.includes(searchInput)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        } else {
+            // If search string is empty, display all rows
+            $('#countryTable tr').show();
+        }
+    });
 });
