@@ -102,8 +102,8 @@ $(document).ready(function() {
 
         if (searchInput) {
             // If a search string is provided, filter the displayed countries
-            $('#countryTable tr').each(function() {
-                // For each row in the table, check country and capital names (case insensitive)
+            $('#countryTable tr:gt(0)').each(function() {
+                // For each row in the table (excluding the first row with headers), check country and capital names (case insensitive)
                 let countryName = $(this).find('td:nth-child(3)').text().toLowerCase();
                 let capitalName = $(this).find('td:nth-child(4)').text().toLowerCase();
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
             });
         } else {
             // If search string is empty, display all rows
-            $('#countryTable tr').show();
+            $('#countryTable tr:gt(0)').show();
         }
     });
 });
